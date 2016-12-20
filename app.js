@@ -5,15 +5,32 @@
  */
 
  // Depedencies requirements, Express
- var express = require('express');
- var app = express();
 
- app.use(express.static(__dirname+'/public'));
+var express = require('express');
+var app = express();
+var morgan = require('morgan');
+var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
+var mongoose = require('mongoose');
 
- app.listen(8080);
- console.log('Im Listening on port 8080');
+app.use(morgan('dev'));
+app.use(bodyParser.json());
+app.use(methodOverride());
 
- // First example router
- app.get('/', function(req, res){
- 	res.send("Hello World!");
- });
+app.use(express.static(__dirname+'/public'));
+
+mongoose.connect('mongodb://localhost/car', function(err, res){
+	if(err){
+		console.log('error connecting to MongoDB.' + err);
+	} else {
+		console.log('Connected to MongoDB');
+	}
+});
+
+app.listen(8080);
+console.log('Im Listening on port 8080');
+
+// First example router
+app.get('/', function(req, res){
+	res.send("Hello World!");
+});
