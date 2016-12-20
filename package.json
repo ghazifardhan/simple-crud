@@ -1,0 +1,13 @@
+{
+  "name": "simple-crud",
+  "version": "0.0.1",
+  "author": "mas_ghazi",
+  "description": "crud",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
