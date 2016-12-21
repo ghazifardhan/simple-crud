@@ -12,6 +12,7 @@ var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var mongoose = require('mongoose');
+var routes = require('./routes/car')(app);
 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
@@ -26,6 +27,7 @@ mongoose.connect('mongodb://localhost/car', function(err, res){
 		console.log('Connected to MongoDB');
 	}
 });
+
 
 app.listen(8080);
 console.log('Im Listening on port 8080');
