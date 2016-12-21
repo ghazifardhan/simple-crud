@@ -12,13 +12,12 @@ var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var mongoose = require('mongoose');
-routes = require('./routes/car')(app);
 
+app.use(express.static(__dirname+'/public'));
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(methodOverride());
-
-app.use(express.static(__dirname+'/public'));
+routes = require('./routes/car')(app);
 
 mongoose.connect('mongodb://localhost/car', function(err, res){
 	if(err){
