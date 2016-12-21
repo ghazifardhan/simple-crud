@@ -8,29 +8,30 @@
 
 var Car = require('../models/car.js');
 
-module.exports = function(app){
+module.exports = function(app) {
 
-	/*
-	 * Find and retrieves all cars
-	 * @param {object} req HTTP request object
-	 * @param {object} res HTTP response object
-	 */
 
-	findAllCars = function(req, res) {
-		console.log("GET - /cars");
-		return Car.find(function(err, cars){
-			if(!err){
-				return res.send(cars);
-			} else {
-				res.statusCode = 500;
-				console.log('Internal error(%d): %s', res.statusCode, err.message);
-				return res.send({ error : "Server error"});
-			}
-		});
-	};
-}
+  /**
+   * Find and retrieves all cars
+   * @param {Object} req HTTP request object.
+   * @param {Object} res HTTP response object.
+   */
+  findAllCars = function(req, res) {
+    console.log("GET - /cars");
+    return Car.find(function(err, cars) {
+      if(!err) {
+        return res.send(cars);
+      } else {
+        res.statusCode = 500;
+        console.log('Internal error(%d): %s',res.statusCode,err.message);
+        return res.send({ error: 'Server error' });
+      }
+    });
+  };
 
-/**
+
+
+  /**
    * Find and retrieves a single car by its ID
    * @param {Object} req HTTP request object.
    * @param {Object} res HTTP response object.
